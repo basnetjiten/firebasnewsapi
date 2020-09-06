@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "868329409686",
+    "firebase_url": "https://classone-4e942.firebaseio.com",
+    "project_id": "classone-4e942",
+    "storage_bucket": "classone-4e942.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868329409686:android:b9c1b292a6eb09c71646b7",
+        "android_client_info": {
+          "package_name": "com.classone.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868329409686-bnhuium9h4762e1fotgkt490ejniabi0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.classone.app",
+            "certificate_hash": "edbe1b0b96320395d7b050c56596e2c46e3667e3"
+          }
+        },
+        {
+          "client_id": "868329409686-ektvtmaapor70hjtdjrp65c62fsr59ok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtrm8061cbuqMLjwWCDSlA2lcV1Edbm8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868329409686-ektvtmaapor70hjtdjrp65c62fsr59ok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
