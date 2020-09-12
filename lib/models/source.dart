@@ -1,14 +1,18 @@
 class Source {
-  dynamic id;
+  String id;
   String name;
 
-  Source.fromJSON(Map<String, dynamic> parsedJson) {
-    this.id = parsedJson['id'];
-    this.name = parsedJson['name'];
+  Source({this.id, this.name});
+
+  Source.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
   }
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    return data;
+  }
 }

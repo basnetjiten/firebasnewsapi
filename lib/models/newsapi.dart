@@ -1,54 +1,33 @@
-import 'package:app/models/source.dart';
+import 'package:app/models/article.dart';
 
 class NewsApi {
-  List<Article> articles;
   String status;
   int totalResults;
+  List<Articles> articles;
 
-  NewsApi.fromJSON(Map<String, dynamic> parsedJson) {
-    var articleMap = parsedJson['articles'];
+  NewsApi({this.status, this.totalResults, this.articles});
 
-    this.articles = articleMap.map<Article>((json) => Article.fromJSON(json)).toList();
-    this.status = parsedJson['status'];
-    this.totalResults = parsedJson['totalResults'];
+  NewsApi.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    totalResults = json['totalResults'];
+    if (json['articles'] != null) {
+      articles = new List<Articles>();
+      json['articles'].forEach((v) {
+        articles.add(new Articles.fromJson(v));
+      });
+    }
   }
 
-  Map<String, dynamic> toJson() => {
-        "articles": articles,
-        "status": status,
-        "totalResults": totalResults,
-      };
-}
-
-class Article {
-  String author;
-  String content;
-  String description;
-  String publishedAt;
-  Source source;
-  String title;
-  String url;
-  String urlToImage;
-
-  Article.fromJSON(Map<String, dynamic> parsedJson) {
-    this.author = parsedJson['author'];
-    this.content = parsedJson['content'];
-    this.description = parsedJson['description'];
-    this.publishedAt = parsedJson['publishedAt'];
-    var parsedSource = parsedJson['source'];
-    this.title = parsedJson['title'];
-    this.url = parsedJson['url'];
-    this.urlToImage = parsedJson['urlToImage'];
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['totalResults'] = this.totalResults;
+    if (this.articles != null) {
+      data['articles'] = this.articles.map((v) => v.toJson()).toList();
+    }
+    return data;
   }
-
-  Map<String, dynamic> toJson() => {
-        "author": author,
-        "content": content,
-        "description": description,
-        "publishedAt": publishedAt,
-        "source": source,
-        "title": title,
-        "url": url,
-        "urlToImage": urlToImage
-      };
 }
+
+
+

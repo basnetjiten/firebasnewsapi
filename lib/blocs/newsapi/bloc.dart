@@ -10,31 +10,32 @@ class NewsApiBloc extends Bloc<NewsApiEvent, NewsApiState> {
 
   @override
   Stream<NewsApiState> mapEventToState(event) async* {
-    final db = Firestore.instance;
+    final db = FirebaseFirestore.instance;
     if (event is FetchNewsApi) {
       NewsApiDS newsApiDS = NewsApiDS();
       NewsApi newsApi;
+      //lets say they use mysql database
       newsApi = await newsApiDS.fetchNewsApi();
       if (newsApi.status == "ok") {
         //when the connection is success
 
-        /*await db
+        await db
             .collection("NewsApi")
-            .document("LatestHeadline")
-            .setData(newsApi.toJson(), merge: true)
+            .doc("LatestHeadline")
+            .set(newsApi.toJson(), SetOptions(merge: true))
             .whenComplete(() {
-
-        final data=    fetchNewsFromFireStore();*/
-
+          final data = fetchNewsFromFireStore();
+          print(data.toString());
+        });
         yield NewsApiFetchedState(newsApi: newsApi);
       }
     }
   }
 
   Future<DocumentSnapshot> fetchNewsFromFireStore() async {
-    final db = Firestore.instance;
+    final db = FirebaseFirestore.instance;
     final newsApiFromFireStore =
-        await db.collection('NewsApi').document('LatestHeadline').get();
+    await db.collection('NewsApi').doc('LatestHeadline').get();
     return newsApiFromFireStore;
   }
 }

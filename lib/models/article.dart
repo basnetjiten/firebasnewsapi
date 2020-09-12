@@ -1,35 +1,51 @@
+
+import 'package:app/models/newsapi.dart';
 import 'package:app/models/source.dart';
 
-class Article {
-  String author;
-  String content;
-  String description;
-  String publishedAt;
+class Articles {
   Source source;
+  String author;
   String title;
+  String description;
   String url;
   String urlToImage;
+  String publishedAt;
+  String content;
 
-  Article.fromJSON(Map<String, dynamic> parsedJson) {
-    this.author = parsedJson['author'];
-    this.content = parsedJson['content'];
-    this.description = parsedJson['description'];
-    this.publishedAt = parsedJson['publishedAt'];
-    var sourcedata = parsedJson['source'];
-    this.source=sourcedata.map<Source>((json) => Source.fromJSON(json));
-    this.title = parsedJson['title'];
-    this.url = parsedJson['url'];
-    this.urlToImage = parsedJson['urlToImage'];
+  Articles(
+      {this.source,
+        this.author,
+        this.title,
+        this.description,
+        this.url,
+        this.urlToImage,
+        this.publishedAt,
+        this.content});
+
+  Articles.fromJson(Map<String, dynamic> json) {
+    source =
+    json['source'] != null ? new Source.fromJson(json['source']) : null;
+    author = json['author'];
+    title = json['title'];
+    description = json['description'];
+    url = json['url'];
+    urlToImage = json['urlToImage'];
+    publishedAt = json['publishedAt'];
+    content = json['content'];
   }
 
-  Map<String, dynamic> toJson() => {
-        "author": author,
-        "content": content,
-        "description": description,
-        "publishedAt": publishedAt,
-        "source": source,
-        "title": title,
-        "url": url,
-        "urlToImage": urlToImage
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.source != null) {
+      data['source'] = this.source.toJson();
+    }
+    data['author'] = this.author;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['url'] = this.url;
+    data['urlToImage'] = this.urlToImage;
+    data['publishedAt'] = this.publishedAt;
+    data['content'] = this.content;
+    return data;
+  }
 }

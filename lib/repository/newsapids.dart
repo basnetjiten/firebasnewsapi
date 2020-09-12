@@ -15,7 +15,7 @@ class NewsApiDS implements NewsApiInterface {
       http.Response response = await httpClient.get(baseUrl);
       var responseString = response.body;
       Map<String, dynamic> mapJson = json.decode(responseString);
-      NewsApi newsApi = NewsApi.fromJSON(mapJson);
+      NewsApi newsApi = NewsApi.fromJson(mapJson);
       return newsApi;
     }
     /*catch (_) {
